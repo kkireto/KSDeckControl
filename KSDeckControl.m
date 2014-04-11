@@ -10,7 +10,7 @@
 
 #import "LeftMenuButton.h"
 
-@interface KSDeckControl ()
+@interface KSMagicControl ()
 
 @property(nonatomic,strong) UIPanGestureRecognizer *panGesture;
 @property(nonatomic,strong) UITapGestureRecognizer *tapGesture;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation KSDeckControl
+@implementation KSMagicControl
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -166,8 +166,10 @@
         positionY = (self.view.frame.size.height - ((self.view.frame.size.width - positionX)/self.view.frame.size.width)*self.view.frame.size.height)/2.0;
         NSLog(@"positionX:%f, positionY:%f", positionX, positionY);
         
-        [_centerHolderView setFrame:CGRectMake(positionX, positionY, self.view.frame.size.width - positionX, self.view.frame.size.height - 2*positionY)];
-        _centerHolderView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        if (_centerHolderView) {
+            [_centerHolderView setFrame:CGRectMake(positionX, positionY, self.view.frame.size.width - positionX, self.view.frame.size.height - 2*positionY)];
+            _centerHolderView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        }
         
         CGFloat menuAlpha = (_menuOffset - positionX)/_menuOffset;
         _menuController.view.alpha = 1 - menuAlpha;
@@ -237,9 +239,10 @@
                          if (finished) {
                              
                          }
-                         [_centerHolderView setFrame:CGRectMake(positionX, positionY, self.view.frame.size.width, self.view.frame.size.height - 2*positionY)];
-                         _centerHolderView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-                         
+                         if (_centerHolderView) {
+                             [_centerHolderView setFrame:CGRectMake(positionX, positionY, self.view.frame.size.width - positionX, self.view.frame.size.height - 2*positionY)];
+                             _centerHolderView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+                         }
                          if (_maskView) {
                              [_maskView removeFromSuperview];
                              _maskView = nil;
