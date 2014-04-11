@@ -10,7 +10,7 @@
 
 #import "LeftMenuButton.h"
 
-@interface KSMagicControl ()
+@interface KSDeckControl ()
 
 @property(nonatomic,strong) UIPanGestureRecognizer *panGesture;
 @property(nonatomic,strong) UITapGestureRecognizer *tapGesture;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation KSMagicControl
+@implementation KSDeckControl
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
